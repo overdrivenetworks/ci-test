@@ -8,3 +8,12 @@ steps:
   image: alpine
   commands:
   - echo It works?!
+
+- name: "build docker"
+  image: plugins/docker
+  settings:
+    repo: ovdnet/test
+    username:
+      from_secret: docker_user
+    password:
+      from_secret: docker_password
