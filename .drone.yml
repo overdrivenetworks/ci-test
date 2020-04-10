@@ -4,16 +4,17 @@ type: docker
 name: test
 
 steps:
-- name: build
+- name: "set image tags"
   image: alpine
   commands:
-  - echo It works?!
+    - "./.drone-write-tags.sh $DRONE_TAG > .tags"
+    - "# Will build the following tags:"
+    - "cat .tags"
 
-- name: "build docker"
-  image: plugins/docker
-  settings:
-    repo: ovdnet/test
-    username:
-      from_secret: docker_user
-    password:
-      from_secret: docker_password
+trigger:
+  event:
+  - tag
+  ref:
+    exclude:
+    - refs/tags/*alpha*
+    - refs/tags/*dev*
