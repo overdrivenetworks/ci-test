@@ -3,14 +3,20 @@ kind: pipeline
 type: docker
 name: test
 
+environment:
+  MYVAR: "hello world"
+
 steps:
 - name: "set image tags"
   image: bash
   commands:
     - "ls -la"
     - "bash .drone-write-tags.sh $DRONE_TAG > .tags"
+    - "echo $MYVAR $MYVAR2"
     - "# Will build the following tags:"
     - "cat .tags"
+  environment:
+    MYVAR2: "test test"
 
 trigger:
   event:
