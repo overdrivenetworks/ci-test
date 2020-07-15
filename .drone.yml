@@ -18,10 +18,3 @@ steps:
   environment:
     MYVAR2: "test test"
 
-trigger:
-  event:
-  - tag
-  ref:
-    exclude:
-    - refs/tags/*alpha*
-    - refs/tags/*dev*
