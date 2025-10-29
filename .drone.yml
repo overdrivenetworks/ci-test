@@ -7,11 +7,12 @@ environment:
   MYVAR: "hello world"
 
 steps:
-- name: "test env vars"
+- name: "test"
   image: alpine
   commands:
     - "ls -la"
     - "echo $MYVAR $MYVAR2"
+    - sleep 20
   environment:
     MYVAR2: "test test"
 
